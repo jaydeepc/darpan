@@ -1,5 +1,4 @@
 import Logo from './logo'
-import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -15,11 +14,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import {
-  DiscordLogoIcon,
-  GitHubLogoIcon,
-  TwitterLogoIcon,
-} from '@radix-ui/react-icons'
 import { Session } from '@supabase/supabase-js'
 import {
   ArrowRight,
@@ -28,6 +22,10 @@ import {
   SunIcon,
   Trash,
   Undo,
+  Info,
+  Palette,
+  AppWindow,
+  UserCircle
 } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import Link from 'next/link'
@@ -38,7 +36,6 @@ export function NavBar({
   signOut,
   onClear,
   canClear,
-  onSocialClick,
   onUndo,
   canUndo,
 }: {
@@ -47,7 +44,6 @@ export function NavBar({
   signOut: () => void
   onClear: () => void
   canClear: boolean
-  onSocialClick: (target: 'github' | 'x' | 'discord') => void
   onUndo: () => void
   canUndo: boolean
 }) {
@@ -56,15 +52,15 @@ export function NavBar({
     <nav className="w-full flex bg-background py-4">
       <div className="flex flex-1 items-center">
         <Link href="/" className="flex items-center gap-2" target="_blank">
-          <Logo width={24} height={24} />
-          <h1 className="whitespace-pre">Fragments by </h1>
+          <Logo className="w-6 h-6" />
+          <h1 className="whitespace-pre">Darpan</h1>
         </Link>
         <Link
-          href="https://e2b.dev"
-          className="underline decoration-[rgba(229,123,0,.3)] decoration-2 text-[#ff8800]"
+          href="https://piramalfinance.com"
+          className="ml-2 underline decoration-[rgba(242,101,34,.3)] decoration-2 text-[#F26522]"
           target="_blank"
         >
-          E2B
+          by Piramal Finance
         </Link>
       </div>
       <div className="flex items-center gap-1 md:gap-4">
@@ -122,15 +118,9 @@ export function NavBar({
               <Tooltip delayDuration={0}>
                 <TooltipTrigger asChild>
                   <DropdownMenuTrigger asChild>
-                    <Avatar className="w-8 h-8">
-                      <AvatarImage
-                        src={
-                          session.user.user_metadata?.avatar_url ||
-                          'https://avatar.vercel.sh/' + session.user.email
-                        }
-                        alt={session.user.email}
-                      />
-                    </Avatar>
+                    <Button variant="ghost" size="icon">
+                      <UserCircle className="h-5 w-5 md:h-6 md:w-6" />
+                    </Button>
                   </DropdownMenuTrigger>
                 </TooltipTrigger>
                 <TooltipContent>My Account</TooltipContent>
@@ -144,30 +134,22 @@ export function NavBar({
                 </span>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem
-                onClick={() => {
-                  window.open('https://e2b.dev', '_blank')
-                }}
-              >
-                <Logo className="mr-2 h-4 w-4 text-muted-foreground" />
-                About E2B
+              <DropdownMenuItem onClick={() => {/* Add functionality */}}>
+                <Info className="mr-2 h-4 w-4 text-muted-foreground" />
+                Know about Darpan
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => onSocialClick('github')}>
-                <GitHubLogoIcon className="mr-2 h-4 w-4 text-muted-foreground" />
-                Star us on GitHub
+              <DropdownMenuItem onClick={() => {/* Add functionality */}}>
+                <Palette className="mr-2 h-4 w-4 text-muted-foreground" />
+                My creations
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => onSocialClick('discord')}>
-                <DiscordLogoIcon className="mr-2 h-4 w-4 text-muted-foreground" />
-                Join us on Discord
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => onSocialClick('x')}>
-                <TwitterLogoIcon className="mr-2 h-4 w-4 text-muted-foreground" />
-                Follow us on X
+              <DropdownMenuItem onClick={() => {/* Add functionality */}}>
+                <AppWindow className="mr-2 h-4 w-4 text-muted-foreground" />
+                My Apps
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={signOut}>
                 <LogOut className="mr-2 h-4 w-4 text-muted-foreground" />
-                Sign out
+                Log out
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
