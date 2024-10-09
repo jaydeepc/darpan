@@ -49,21 +49,21 @@ export function NavBar({
 }) {
   const { setTheme, theme } = useTheme()
   return (
-    <nav className="w-full flex bg-background py-4">
+    <nav className="w-full flex bg-background/80 backdrop-blur-sm border-b border-border py-4 px-6">
       <div className="flex flex-1 items-center">
-        <Link href="/" className="flex items-center gap-2" target="_blank">
-          <Logo className="w-6 h-6" />
-          <h1 className="whitespace-pre">Darpan</h1>
+        <Link href="/" className="flex items-center gap-3" target="_blank">
+          <Logo className="w-8 h-8" />
+          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Darpan</h1>
         </Link>
         <Link
           href="https://piramalfinance.com"
-          className="ml-2 underline decoration-[rgba(242,101,34,.3)] decoration-2 text-[#F26522]"
+          className="ml-4 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
           target="_blank"
         >
           by Piramal Finance
         </Link>
       </div>
-      <div className="flex items-center gap-1 md:gap-4">
+      <div className="flex items-center gap-2 md:gap-4">
         <TooltipProvider>
           <Tooltip delayDuration={0}>
             <TooltipTrigger asChild>
@@ -128,9 +128,9 @@ export function NavBar({
             </TooltipProvider>
             <DropdownMenuContent className="w-56" align="end">
               <DropdownMenuLabel className="flex flex-col">
-                <span className="text-sm">My Account</span>
+                <span className="text-sm font-medium">My Account</span>
                 <span className="text-xs text-muted-foreground">
-                  {session.user.email}
+                  jaydeep.chakrabarty@piramal.com
                 </span>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
