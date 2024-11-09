@@ -1,31 +1,18 @@
 import Logo from './logo'
-import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+import { Button } from './ui/button'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip'
+} from './ui/tooltip'
 import { Session } from '@supabase/supabase-js'
 import {
   ArrowRight,
-  LogOut,
   MoonIcon,
   SunIcon,
   Trash,
   Undo,
-  Info,
-  Palette,
-  AppWindow,
-  UserCircle
 } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import Link from 'next/link'
@@ -112,48 +99,7 @@ export function NavBar({
             <TooltipContent>Toggle theme</TooltipContent>
           </Tooltip>
         </TooltipProvider>
-        {session ? (
-          <DropdownMenu>
-            <TooltipProvider>
-              <Tooltip delayDuration={0}>
-                <TooltipTrigger asChild>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon">
-                      <UserCircle className="h-5 w-5 md:h-6 md:w-6" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                </TooltipTrigger>
-                <TooltipContent>My Account</TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-            <DropdownMenuContent className="w-56" align="end">
-              <DropdownMenuLabel className="flex flex-col">
-                <span className="text-sm font-medium">My Account</span>
-                <span className="text-xs text-muted-foreground">
-                  jaydeep.chakrabarty@piramal.com
-                </span>
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => {/* Add functionality */}}>
-                <Info className="mr-2 h-4 w-4 text-muted-foreground" />
-                Know about Darpan
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => {/* Add functionality */}}>
-                <Palette className="mr-2 h-4 w-4 text-muted-foreground" />
-                My creations
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => {/* Add functionality */}}>
-                <AppWindow className="mr-2 h-4 w-4 text-muted-foreground" />
-                My Apps
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={signOut}>
-                <LogOut className="mr-2 h-4 w-4 text-muted-foreground" />
-                Log out
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        ) : (
+        {!session && (
           <Button variant="default" onClick={showLogin}>
             Sign in
             <ArrowRight className="ml-2 h-4 w-4" />
